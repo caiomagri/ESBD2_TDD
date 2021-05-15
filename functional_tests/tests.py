@@ -118,7 +118,7 @@ class NewVsitorTest(LiveServerTestCase):
 
 		# Francis obtém seu próprio URL exclusivo
 		francis_list_url = self.browser.current_url
-		self.assertRegex(edith_list_url, '/list/.+')
+		self.assertRegex(edith_list_url, '/lists/.+')
 		self.assertNotEqual( francis_list_url, edith_list_url)
 
 		# Novamente não há sinal algum da lista de Edith
