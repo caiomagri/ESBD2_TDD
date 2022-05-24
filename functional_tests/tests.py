@@ -2,6 +2,7 @@ from django.test import LiveServerTestCase
 from selenium import webdriver
 from selenium.common.exceptions import WebDriverException
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import Select
 import time
 
 MAX_WAIT = 10
@@ -56,5 +57,8 @@ class NewVsitorTest(LiveServerTestCase):
 		# Quando ela tecla enter, a página é atualizada, e agora
 		# a página lista "1 - Comprar anzol - prioridade alta"
 		# como um item em uma lista de tarefas
+		select = Select(self.browser.find_element_by_id('id_item_priority'))
+		select.select_by_value('hight')
 		inputbox.send_keys(Keys.ENTER)
+		
 		self.wait_for_row_in_list_table('1 - Comprar anzol - prioridade alta')
