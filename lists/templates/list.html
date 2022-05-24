@@ -1,9 +1,13 @@
+{% load static %}
 <html>
 	<head>
 		<title>To-Do lists</title>
 	</head>
 	<body>
 		<h1>Your To-Do list</h1>
+		<div style="padding-bottom:30px">
+			<a id="link_for_my_list" href="{% url 'view_list' list.id %}">link para sua lista</a>
+		</div>
 		<form method="POST" action="/lists/{{list.id}}/add_item">
 			<input name="item_text" id="id_new_item" placeholder="Enter a to-do item" />
 			<select name="item_priority" id="id_item_priority">

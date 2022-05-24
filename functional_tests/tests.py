@@ -80,3 +80,11 @@ class NewVsitorTest(LiveServerTestCase):
 
 		self.wait_for_row_in_list_table('1 - Comprar anzol - prioridade alta')
 		self.wait_for_row_in_list_table('2 - Comprar cola instantânea - prioridade baixa')
+
+		# Edith se pergunta se o site lembrará de sua lista. Então
+		# ela nota que o site gerou um URL único para ela -- há um 
+		# pequeno texto explicativo para isso.
+		self.browser.find_element_by_id("link_for_my_list").click()
+		# Ela acessa essa URL -- sua lista de tarefas continua lá.
+		self.wait_for_row_in_list_table('1 - Comprar anzol - prioridade alta')
+		self.wait_for_row_in_list_table('2 - Comprar cola instantânea - prioridade baixa')
