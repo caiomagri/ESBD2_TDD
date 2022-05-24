@@ -60,5 +60,23 @@ class NewVsitorTest(LiveServerTestCase):
 		select = Select(self.browser.find_element_by_id('id_item_priority'))
 		select.select_by_value('hight')
 		inputbox.send_keys(Keys.ENTER)
-		
+
 		self.wait_for_row_in_list_table('1 - Comprar anzol - prioridade alta')
+
+		# Ainda continua havendo uma caixa de texto convidando-a a 
+		# acrescentar outro item. Ela insere "Comprar cola instantânea"
+		# e assinala prioridade baixa pois ela ainda tem cola suficiente
+		# por algum tempo
+		inputbox = self.browser.find_element_by_id('id_new_item')
+		inputbox.send_keys('Comprar cola instantânea')
+
+		select = Select(self.browser.find_element_by_id('id_item_priority'))
+		select.select_by_value('low')
+
+		# A página é atualizada novamente e agora mostra os dois
+		# itens em sua lista e as respectivas prioridades
+
+		inputbox.send_keys(Keys.ENTER)
+
+		self.wait_for_row_in_list_table('1 - Comprar anzol - prioridade alta')
+		self.wait_for_row_in_list_table('2 - Comprar cola instantânea - prioridade baixa')

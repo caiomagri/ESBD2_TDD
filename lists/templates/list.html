@@ -6,6 +6,11 @@
 		<h1>Your To-Do list</h1>
 		<form method="POST" action="/lists/{{list.id}}/add_item">
 			<input name="item_text" id="id_new_item" placeholder="Enter a to-do item" />
+			<select name="item_priority" id="id_item_priority">
+				<option value="low">baixa</option>
+				<option value="medium">media</option>
+				<option value="hight">alta</option>
+			</select>
 			{% csrf_token %}
 		</form>
 		<table id="id_list_table">
