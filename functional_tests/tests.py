@@ -27,3 +27,15 @@ class NewVsitorTest(LiveServerTestCase):
 		self.assertIn('priority to-do', self.browser.title)
 		header_text = self.browser.find_element_by_tag_name('h1').text
 		self.assertIn('priority to-do', header_text)
+
+		# Ela é convidada a inserir um item de tarefa e a prioridade da 
+		# mesma imediatamente
+
+		inputbox = self.browser.find_element_by_id('id_new_item')
+		self.assertEqual(
+			inputbox.get_attribute('placeholder'),
+			'Enter a to-do item'
+		)
+		# Ela digita "Comprar anzol" em uma nova caixa de texto
+		# e assinala prioridade alta no campo de seleção de prioridades
+		inputbox.send_keys('Comprar anzol')
